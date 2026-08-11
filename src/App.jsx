@@ -482,16 +482,46 @@ import { Alert } from "bootstrap";
 // export default App;    
 
 // Make Custom Hooks in React:-
-import useCounter from "./useCounter";
+// import useCounter from "./useCounter";
+// function App() {
+//   const { count, increase, decrease } = useCounter();
+//   return (
+//     <>
+//       <h1>Custom Hook Example</h1>
+//       <h2>Count: {count}</h2>
+//       <button onClick={increase}>Increase</button>
+//       <button onClick={decrease}>Decrease</button>
+//     </>
+//   );
+// }
+// export default App;    
+
+//Basic Example of React Router:-
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+function Home() {
+  return <h2>Home Page</h2>;
+}
+function About() {
+  return <h2>About Page</h2>;
+}
+function Contact() {
+  return <h2>Contact Page</h2>;
+}
 function App() {
-  const { count, increase, decrease } = useCounter();
   return (
-    <>
-      <h1>Custom Hook Example</h1>
-      <h2>Count: {count}</h2>
-      <button onClick={increase}>Increase</button>
-      <button onClick={decrease}>Decrease</button>
-    </>
+    <BrowserRouter>
+      <h1>React Router Example</h1>
+      <nav>
+        <Link to="/">Home</Link> {" | "}
+        <Link to="/about">About</Link> {" | "}
+        <Link to="/contact">Contact</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 export default App;    
