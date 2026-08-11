@@ -828,74 +828,91 @@ import { Alert } from "bootstrap";
 // export default App;    
 
 //Simple Validation in React Forms:-
-import { useState } from "react";
+// import { useState } from "react";
 
+// function App() {
+//   const [name, setName] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+
+//     if (name === "" || email === "" || password === "") {
+//       alert("Please fill all fields");
+//       return;
+//     }
+
+//     if (password.length < 6) {
+//       alert("Password must be at least 6 characters");
+//       return;
+//     }
+
+//     alert("Form Submitted Successfully!");
+//   };
+
+//   return (
+//     <div>
+//       <h1>Registration Form</h1>
+
+//       <form onSubmit={handleSubmit}>
+//         <label>Name:</label>
+//         <br />
+//         <input
+//           type="text"
+//           value={name}
+//           onChange={(e) => setName(e.target.value)}
+//           placeholder="Enter your name"
+//         />
+
+//         <br />
+//         <br />
+
+//         <label>Email:</label>
+//         <br />
+//         <input
+//           type="email"
+//           value={email}
+//           onChange={(e) => setEmail(e.target.value)}
+//           placeholder="Enter your email"
+//         />
+
+//         <br />
+//         <br />
+
+//         <label>Password:</label>
+//         <br />
+//         <input
+//           type="password"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//           placeholder="Enter your password"
+//         />
+
+//         <br />
+//         <br />
+
+//         <button type="submit">Submit</button>
+//       </form>
+//     </div>
+//   );
+// }
+
+// export default App;  
+
+//Lazy Loading in React:-
+import { lazy, Suspense } from "react";
+const About = lazy(() => import("./About"));
 function App() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (name === "" || email === "" || password === "") {
-      alert("Please fill all fields");
-      return;
-    }
-
-    if (password.length < 6) {
-      alert("Password must be at least 6 characters");
-      return;
-    }
-
-    alert("Form Submitted Successfully!");
-  };
-
   return (
     <div>
-      <h1>Registration Form</h1>
+      <h1>Lazy Loading Example</h1>
 
-      <form onSubmit={handleSubmit}>
-        <label>Name:</label>
-        <br />
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Enter your name"
-        />
-
-        <br />
-        <br />
-
-        <label>Email:</label>
-        <br />
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email"
-        />
-
-        <br />
-        <br />
-
-        <label>Password:</label>
-        <br />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your password"
-        />
-
-        <br />
-        <br />
-
-        <button type="submit">Submit</button>
-      </form>
+      <Suspense fallback={<h2>Loading...</h2>}>
+        <About />
+      </Suspense>
     </div>
   );
 }
 
-export default App;  
+export default App;    
