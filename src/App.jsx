@@ -369,33 +369,70 @@ import { Alert } from "bootstrap";
 // export default App;    
 
 // Updating objects in state:-
+// import { useState } from "react";
+
+// function App() {
+//   const [user, setUser] = useState({
+//     name: "Aiman",
+//     age: 20,
+//     city: "Peshawar"
+//   });
+
+//   const updateUser = () => {
+//     setUser({
+//       ...user,
+//       name: "Sara",
+//       age: 21,
+//       city: "Lahore"
+//     });
+//   };
+
+//   return (
+//     <>
+//       <h1>Updating Objects in State</h1>
+
+//       <h2>Name: {user.name}</h2>
+//       <h2>Age: {user.age}</h2>
+//       <h2>City: {user.city}</h2>
+
+//       <button onClick={updateUser}>
+//         Update User
+//       </button>
+//     </>
+//   );
+// }
+
+// export default App;
+
+// Updating array in state:-
 import { useState } from "react";
+
 function App() {
-  const [user, setUser] = useState({
-    name: "Aiman",
-    age: 20,
-    city: "Peshawar"
-  });
-  const updateUser = () => {
-    setUser({
-      ...user,
-      name: "Sara",
-      age: 21,
-      city: "Lahore"
-    });
+  const [fruits, setFruits] = useState([
+    "Apple",
+    "Banana",
+    "Mango"
+  ]);
+
+  const addFruit = () => {
+    setFruits([...fruits, "Orange"]);
+    setFruits([...fruits, "Grapes"]);
+    setFruits([...fruits, "Strawberry"]);
   };
+
   return (
     <>
-      <h1>Updating Objects in State</h1>
+      <h1>Updating Array in State</h1>
 
-      <h2>Name: {user.name}</h2>
-      <h2>Age: {user.age}</h2>
-      <h2>City: {user.city}</h2>
+      {fruits.map((fruit, index) => (
+        <p key={index}>{fruit}</p>
+      ))}
 
-      <button onClick={updateUser}>
-        Update User
+      <button onClick={addFruit}>
+        Add Fruit
       </button>
     </>
   );
 }
-export default App;
+
+export default App;  
