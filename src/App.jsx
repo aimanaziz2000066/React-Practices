@@ -178,27 +178,43 @@ import { Alert } from "bootstrap";
 // export default App;
 
 //React Uncontrolled Component:-
-import { useRef } from "react";
+// import { useRef } from "react";
+// function App() {
+//   const inputRef = useRef();
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     alert(inputRef.current.value);
+//   };
+//   return (
+//     <>
+//       <h1>Uncontrolled Component</h1>
+//       <form onSubmit={handleSubmit}>
+//         <input
+//           type="text"
+//           ref={inputRef}
+//           placeholder="Enter your name"
+//         />
+//         <button type="submit">
+//           Submit
+//         </button>
+//       </form>
+//     </>
+//   );
+// }
+// export default App;   
+
+//Pass function as Props:-
+import Student from "./Student";
 function App() {
-  const inputRef = useRef();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(inputRef.current.value);
+  const showMessage = () => {
+    alert("Hello from App Component!");
   };
   return (
     <>
-      <h1>Uncontrolled Component</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          ref={inputRef}
-          placeholder="Enter your name"
-        />
-        <button type="submit">
-          Submit
-        </button>
-      </form>
+      <h1>Pass Function as Props</h1>
+
+      <Student message={showMessage} />
     </>
   );
 }
-export default App;   
+export default App;  
