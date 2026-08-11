@@ -497,31 +497,79 @@ import { Alert } from "bootstrap";
 // export default App;    
 
 //Basic Example of React Router:-
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+// import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+// function Home() {
+//   return <h2>Home Page</h2>;
+// }
+// function About() {
+//   return <h2>About Page</h2>;
+// }
+// function Contact() {
+//   return <h2>Contact Page</h2>;
+// }
+// function App() {
+//   return (
+//     <BrowserRouter>
+//       <h1>React Router Example</h1>
+//       <nav>
+//         <Link to="/">Home</Link> {" | "}
+//         <Link to="/about">About</Link> {" | "}
+//         <Link to="/contact">Contact</Link>
+//       </nav>
+//       <Routes>
+//         <Route path="/" element={<Home />} />
+//         <Route path="/about" element={<About />} />
+//         <Route path="/contact" element={<Contact />} />
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// }
+// export default App;    
+
+//Nested Navigation with React Router:-
+import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
 function Home() {
   return <h2>Home Page</h2>;
 }
 function About() {
   return <h2>About Page</h2>;
 }
-function Contact() {
-  return <h2>Contact Page</h2>;
+
+function Dashboard() {
+  return (
+    <div>
+      <h2>Dashboard</h2>
+      <nav>
+        <Link to="profile">Profile</Link> |{" "}
+        <Link to="settings">Settings</Link>
+      </nav>
+      <Outlet />
+    </div>
+  );
+}
+function Profile() {
+  return <h3>Profile Page</h3>;
+}
+function Settings() {
+  return <h3>Settings Page</h3>;
 }
 function App() {
   return (
     <BrowserRouter>
-      <h1>React Router Example</h1>
       <nav>
-        <Link to="/">Home</Link> {" | "}
-        <Link to="/about">About</Link> {" | "}
-        <Link to="/contact">Contact</Link>
+        <Link to="/">Home</Link> |{" "}
+        <Link to="/about">About</Link> |{" "}
+        <Link to="/dashboard">Dashboard</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
 }
-export default App;    
+export default App;   
