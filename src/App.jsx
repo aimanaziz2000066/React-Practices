@@ -335,35 +335,67 @@ import { Alert } from "bootstrap";
 // export default App;
 
 //Lifting State Up:-
+// import { useState } from "react";
+
+// function App() {
+//   const [name, setName] = useState("");
+
+//   return (
+//     <>
+//       <h1>Lifting State Up</h1>
+//       <InputBox name={name} setName={setName} />
+
+//       <DisplayName name={name} />
+//     </>
+//   );
+// }
+// function InputBox({ name, setName }) {
+//   return (
+//     <input
+//       type="text"
+//       value={name}
+//       placeholder="Enter your name"
+//       onChange={(e) => setName(e.target.value)}
+//     />
+//   );
+// }
+// function DisplayName({ name }) {
+//   return (
+//     <h2>
+//       Your Name: {name}
+//     </h2>
+//   );
+// }
+// export default App;    
+
+// Updating objects in state:-
 import { useState } from "react";
-
 function App() {
-  const [name, setName] = useState("");
-
+  const [user, setUser] = useState({
+    name: "Aiman",
+    age: 20,
+    city: "Peshawar"
+  });
+  const updateUser = () => {
+    setUser({
+      ...user,
+      name: "Sara",
+      age: 21,
+      city: "Lahore"
+    });
+  };
   return (
     <>
-      <h1>Lifting State Up</h1>
-      <InputBox name={name} setName={setName} />
+      <h1>Updating Objects in State</h1>
 
-      <DisplayName name={name} />
+      <h2>Name: {user.name}</h2>
+      <h2>Age: {user.age}</h2>
+      <h2>City: {user.city}</h2>
+
+      <button onClick={updateUser}>
+        Update User
+      </button>
     </>
   );
 }
-function InputBox({ name, setName }) {
-  return (
-    <input
-      type="text"
-      value={name}
-      placeholder="Enter your name"
-      onChange={(e) => setName(e.target.value)}
-    />
-  );
-}
-function DisplayName({ name }) {
-  return (
-    <h2>
-      Your Name: {name}
-    </h2>
-  );
-}
-export default App;    
+export default App;
