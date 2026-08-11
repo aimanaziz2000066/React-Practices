@@ -952,36 +952,105 @@
 // export default App;  
 
 //Integrate API for POST Method:-
-import { useState } from "react";
+// import { useState } from "react";
+
+// function App() {
+//   const [name, setName] = useState("");
+//   const [email, setEmail] = useState("");
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     const userData = {
+//       name: name,
+//       email: email,
+//     };
+
+//     try {
+//       const response = await fetch(
+//         "https://jsonplaceholder.typicode.com/users",
+//         {
+//           method: "POST",
+//           headers: {
+//             "Content-Type": "application/json",
+//           },
+//           body: JSON.stringify(userData),
+//         }
+//       );
+
+//       const data = await response.json();
+
+//       console.log("Response:", data);
+//       alert("User Added Successfully!");
+//     } catch (error) {
+//       console.log("Error:", error);
+//       alert("Something went wrong!");
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <h1>Add User</h1>
+
+//       <form onSubmit={handleSubmit}>
+//         <label>Name:</label>
+//         <br />
+
+//         <input
+//           type="text"
+//           placeholder="Enter Name"
+//           value={name}
+//           onChange={(e) => setName(e.target.value)}
+//         />
+
+//         <br />
+//         <br />
+
+//         <label>Email:</label>
+//         <br />
+
+//         <input
+//           type="email"
+//           placeholder="Enter Email"
+//           value={email}
+//           onChange={(e) => setEmail(e.target.value)}
+//         />
+
+//         <br />
+//         <br />
+
+//         <button type="submit">Add User</button>
+//       </form>
+//     </div>
+//   );
+// }
+
+// export default App;    
+
+//Integrate API for DELETE Method:-
+  import { useState } from "react";
 
 function App() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [userId, setUserId] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const userData = {
-      name: name,
-      email: email,
-    };
+  const handleDelete = async () => {
+    if (userId === "") {
+      alert("Please enter User ID");
+      return;
+    }
 
     try {
       const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users",
+        `https://jsonplaceholder.typicode.com/users/${userId}`,
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userData),
+          method: "DELETE",
         }
       );
 
-      const data = await response.json();
-
-      console.log("Response:", data);
-      alert("User Added Successfully!");
+      if (response.ok) {
+        alert("User Deleted Successfully!");
+        setUserId("");
+      }
     } catch (error) {
       console.log("Error:", error);
       alert("Something went wrong!");
@@ -990,39 +1059,21 @@ function App() {
 
   return (
     <div>
-      <h1>Add User</h1>
+      <h1>Delete User</h1>
 
-      <form onSubmit={handleSubmit}>
-        <label>Name:</label>
-        <br />
+      <input
+        type="number"
+        placeholder="Enter User ID"
+        value={userId}
+        onChange={(e) => setUserId(e.target.value)}
+      />
 
-        <input
-          type="text"
-          placeholder="Enter Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+      <br />
+      <br />
 
-        <br />
-        <br />
-
-        <label>Email:</label>
-        <br />
-
-        <input
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <br />
-        <br />
-
-        <button type="submit">Add User</button>
-      </form>
+      <button onClick={handleDelete}>Delete User</button>
     </div>
   );
 }
 
-export default App;    
+export default App;
