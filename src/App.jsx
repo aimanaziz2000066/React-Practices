@@ -279,29 +279,57 @@ import { Alert } from "bootstrap";
 // export default App;
 
 //React js Pure Component:-
-import React from "react";
-class Student extends React.PureComponent {
-  render() {
-    console.log("Student Component Render");
-    return (
-      <>
-        <h2>Student Name: {this.props.name}</h2>
-        <h2>Age:{this.props.age}</h2>
-      </>
-    );
-  }
-}
-function App() {
-  const name = "Aiman";
-  const age = 20;
+// import React from "react";
+// class Student extends React.PureComponent {
+//   render() {
+//     console.log("Student Component Render");
+//     return (
+//       <>
+//         <h2>Student Name: {this.props.name}</h2>
+//         <h2>Age:{this.props.age}</h2>
+//       </>
+//     );
+//   }
+// }
+// function App() {
+//   const name = "Aiman";
+//   const age = 20;
   
+//   return (
+//     <>
+//       <h1>Pure Component Example</h1>
+
+//       <Student name={name} />
+//       <Student age={age} />
+//     </>
+//   );
+// }
+// export default App;   
+
+//Derived State in React    
+import { useState } from "react";
+function App() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const fullName = firstName + " " + lastName;
+
   return (
     <>
-      <h1>Pure Component Example</h1>
-
-      <Student name={name} />
-      <Student age={age} />
+      <h1>Derived State Example</h1>
+      <input
+        type="text"
+        placeholder="First Name"
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Last Name"
+        value={lastName}
+        onChange={(e) => setLastName(e.target.value)}
+      />
+      <h2>Full Name: {fullName}</h2>
     </>
   );
 }
-export default App;   
+export default App;
