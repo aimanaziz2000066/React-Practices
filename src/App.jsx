@@ -307,29 +307,63 @@ import { Alert } from "bootstrap";
 // export default App;   
 
 //Derived State in React    
+// import { useState } from "react";
+// function App() {
+//   const [firstName, setFirstName] = useState("");
+//   const [lastName, setLastName] = useState("");
+//   const fullName = firstName + " " + lastName;
+
+//   return (
+//     <>
+//       <h1>Derived State Example</h1>
+//       <input
+//         type="text"
+//         placeholder="First Name"
+//         value={firstName}
+//         onChange={(e) => setFirstName(e.target.value)}
+//       />
+//       <input
+//         type="text"
+//         placeholder="Last Name"
+//         value={lastName}
+//         onChange={(e) => setLastName(e.target.value)}
+//       />
+//       <h2>Full Name: {fullName}</h2>
+//     </>
+//   );
+// }
+// export default App;
+
+//Lifting State Up:-
 import { useState } from "react";
+
 function App() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const fullName = firstName + " " + lastName;
+  const [name, setName] = useState("");
 
   return (
     <>
-      <h1>Derived State Example</h1>
-      <input
-        type="text"
-        placeholder="First Name"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Last Name"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-      />
-      <h2>Full Name: {fullName}</h2>
+      <h1>Lifting State Up</h1>
+      <InputBox name={name} setName={setName} />
+
+      <DisplayName name={name} />
     </>
   );
 }
-export default App;
+function InputBox({ name, setName }) {
+  return (
+    <input
+      type="text"
+      value={name}
+      placeholder="Enter your name"
+      onChange={(e) => setName(e.target.value)}
+    />
+  );
+}
+function DisplayName({ name }) {
+  return (
+    <h2>
+      Your Name: {name}
+    </h2>
+  );
+}
+export default App;    
