@@ -63,26 +63,44 @@
 // export default App;
 
 //Button Example
-import styled from "styled-components";
-const Button = styled.button`
-  background-color: purple;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 8px;
-  font-size: 18px;
-  cursor: pointer;
-  &:hover {
-    background-color: pink;
-    color: black;
-  }
-`;
+// import styled from "styled-components";
+// const Button = styled.button`
+//   background-color: purple;
+//   color: white;
+//   border: none;
+//   padding: 12px 25px;
+//   border-radius: 8px;
+//   font-size: 18px;
+//   cursor: pointer;
+//   &:hover {
+//     background-color: pink;
+//     color: black;
+//   }
+// `;
 
-function App() {
-  return (
+// function App() {
+//   return (
+//     <>
+//       <Button>Click Me</Button>
+//     </>
+//   );
+// }
+// export default App;
+
+import styled from "styled-components";
+function App(){
+  const Heading =styled.h2`
+  color:red;
+  border:1px solid green;
+  border-radius:5px;
+  margin:20px;
+  padding:10px;
+  `
+  return(
     <>
-      <Button>Click Me</Button>
+    <h1>Styled Component With React.js</h1>
+    <Heading>Hello</Heading>
     </>
-  );
+  )
 }
 export default App;
