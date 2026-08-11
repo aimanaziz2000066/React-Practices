@@ -675,81 +675,153 @@ import { Alert } from "bootstrap";
 // export default App;    
 
 // Edit User Detail Page:-
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  useParams,
-  useNavigate,
-} from "react-router-dom";
+// import {
+//   BrowserRouter,
+//   Routes,
+//   Route,
+//   Link,
+//   useParams,
+//   useNavigate,
+// } from "react-router-dom";
 
-function Home() {
-  return (
-    <div>
-      <h1>Users List</h1>
+// function Home() {
+//   return (
+//     <div>
+//       <h1>Users List</h1>
 
-      <Link to="/user/1">User 1</Link>
-      <br />
+//       <Link to="/user/1">User 1</Link>
+//       <br />
 
-      <Link to="/user/2">User 2</Link>
-    </div>
-  );
-}
+//       <Link to="/user/2">User 2</Link>
+//     </div>
+//   );
+// }
 
-function UserDetail() {
-  const { id } = useParams();
-  const navigate = useNavigate();
+// function UserDetail() {
+//   const { id } = useParams();
+//   const navigate = useNavigate();
 
-  return (
-    <div>
-      <h1>User Detail Page</h1>
+//   return (
+//     <div>
+//       <h1>User Detail Page</h1>
 
-      <h2>User ID: {id}</h2>
+//       <h2>User ID: {id}</h2>
 
-      <p>Name: Aiman</p>
-      <p>Email: aiman@gmail.com</p>
+//       <p>Name: Aiman</p>
+//       <p>Email: aiman@gmail.com</p>
 
-      <button onClick={() => navigate(`/user/${id}/edit`)}>
-        Edit User
-      </button>
-    </div>
-  );
-}
+//       <button onClick={() => navigate(`/user/${id}/edit`)}>
+//         Edit User
+//       </button>
+//     </div>
+//   );
+// }
 
-function EditUser() {
-  const { id } = useParams();
+// function EditUser() {
+//   const { id } = useParams();
+
+//   return (
+//     <div>
+//       <h1>Edit User</h1>
+
+//       <h2>User ID: {id}</h2>
+
+//       <input type="text" placeholder="Enter Name" />
+//       <br />
+//       <br />
+
+//       <input type="email" placeholder="Enter Email" />
+//       <br />
+//       <br />
+
+//       <button>Update User</button>
+//     </div>
+//   );
+// }
+
+// function App() {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path="/" element={<Home />} />
+
+//         <Route path="/user/:id" element={<UserDetail />} />
+
+//         <Route path="/user/:id/edit" element={<EditUser />} />
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// }
+
+// export default App;    
+
+//Populate Data in Input Fields with API:-
+import { useEffect, useState } from "react";
+
+function App() {
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users/1")
+      .then((response) => response.json())
+      .then((data) => {
+        setUser({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+        });
+      });
+  }, []);
 
   return (
     <div>
       <h1>Edit User</h1>
 
-      <h2>User ID: {id}</h2>
+      <label>Name</label>
+      <br />
+      <input
+        type="text"
+        value={user.name}
+        onChange={(e) =>
+          setUser({ ...user, name: e.target.value })
+        }
+      />
 
-      <input type="text" placeholder="Enter Name" />
       <br />
       <br />
 
-      <input type="email" placeholder="Enter Email" />
+      <label>Email</label>
+      <br />
+      <input
+        type="email"
+        value={user.email}
+        onChange={(e) =>
+          setUser({ ...user, email: e.target.value })
+        }
+      />
+
+      <br />
+      <br />
+
+      <label>Phone</label>
+      <br />
+      <input
+        type="text"
+        value={user.phone}
+        onChange={(e) =>
+          setUser({ ...user, phone: e.target.value })
+        }
+      />
+
       <br />
       <br />
 
       <button>Update User</button>
     </div>
-  );
-}
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-
-        <Route path="/user/:id" element={<UserDetail />} />
-
-        <Route path="/user/:id/edit" element={<EditUser />} />
-      </Routes>
-    </BrowserRouter>
   );
 }
 
