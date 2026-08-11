@@ -220,35 +220,59 @@ import { Alert } from "bootstrap";
 // export default App;  
 
 //useFormStatus Hook:-   
-import { useFormStatus } from "react-dom";
+// import { useFormStatus } from "react-dom";
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
+// function SubmitButton() {
+//   const { pending } = useFormStatus();
 
-  return (
-    <button type="submit" disabled={pending}>
-      {pending ? "Submitting..." : "Submit"}
-    </button>
-  );
-}
+//   return (
+//     <button type="submit" disabled={pending}>
+//       {pending ? "Submitting..." : "Submit"}
+//     </button>
+//   );
+// }
+
+// function App() {
+//   const handleSubmit = async (formData) => {
+//     await new Promise((resolve) => setTimeout(resolve, 2000));
+//     console.log(formData.get("name"));
+//   };
+//   return (
+//     <>
+//       <h1>useFormStatus Hook</h1>
+//       <form action={handleSubmit}>
+//         <input
+//           type="text"
+//           name="name"
+//           placeholder="Enter your name"
+//         />
+
+//         <SubmitButton />
+//       </form>
+//     </>
+//   );
+// }
+// export default App;
+
+// useTransition Hook in React js:-    
+import { useState, useTransition } from "react";
 
 function App() {
-  const handleSubmit = async (formData) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(formData.get("name"));
+  const [count, setCount] = useState(0);
+  const [isPending, startTransition] = useTransition();
+  const handleClick = () => {
+    startTransition(() => {
+      setCount(count + 1);
+    });
   };
   return (
     <>
-      <h1>useFormStatus Hook</h1>
-      <form action={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter your name"
-        />
-
-        <SubmitButton />
-      </form>
+      <h1>useTransition Hook</h1>
+      <h2>Count: {count}</h2>
+      <button onClick={handleClick}>
+        Increase
+      </button>
+      {isPending && <p>Updating...</p>}
     </>
   );
 }
