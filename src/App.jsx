@@ -756,73 +756,146 @@ import { Alert } from "bootstrap";
 // export default App;    
 
 //Populate Data in Input Fields with API:-
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+
+// function App() {
+//   const [user, setUser] = useState({
+//     name: "",
+//     email: "",
+//     phone: "",
+//   });
+
+//   useEffect(() => {
+//     fetch("https://jsonplaceholder.typicode.com/users/1")
+//       .then((response) => response.json())
+//       .then((data) => {
+//         setUser({
+//           name: data.name,
+//           email: data.email,
+//           phone: data.phone,
+//         });
+//       });
+//   }, []);
+
+//   return (
+//     <div>
+//       <h1>Edit User</h1>
+
+//       <label>Name</label>
+//       <br />
+//       <input
+//         type="text"
+//         value={user.name}
+//         onChange={(e) =>
+//           setUser({ ...user, name: e.target.value })
+//         }
+//       />
+
+//       <br />
+//       <br />
+
+//       <label>Email</label>
+//       <br />
+//       <input
+//         type="email"
+//         value={user.email}
+//         onChange={(e) =>
+//           setUser({ ...user, email: e.target.value })
+//         }
+//       />
+
+//       <br />
+//       <br />
+
+//       <label>Phone</label>
+//       <br />
+//       <input
+//         type="text"
+//         value={user.phone}
+//         onChange={(e) =>
+//           setUser({ ...user, phone: e.target.value })
+//         }
+//       />
+
+//       <br />
+//       <br />
+
+//       <button>Update User</button>
+//     </div>
+//   );
+// }
+
+// export default App;    
+
+//Simple Validation in React Forms:-
+import { useState } from "react";
 
 function App() {
-  const [user, setUser] = useState({
-    name: "",
-    email: "",
-    phone: "",
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users/1")
-      .then((response) => response.json())
-      .then((data) => {
-        setUser({
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-        });
-      });
-  }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (name === "" || email === "" || password === "") {
+      alert("Please fill all fields");
+      return;
+    }
+
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters");
+      return;
+    }
+
+    alert("Form Submitted Successfully!");
+  };
 
   return (
     <div>
-      <h1>Edit User</h1>
+      <h1>Registration Form</h1>
 
-      <label>Name</label>
-      <br />
-      <input
-        type="text"
-        value={user.name}
-        onChange={(e) =>
-          setUser({ ...user, name: e.target.value })
-        }
-      />
+      <form onSubmit={handleSubmit}>
+        <label>Name:</label>
+        <br />
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Enter your name"
+        />
 
-      <br />
-      <br />
+        <br />
+        <br />
 
-      <label>Email</label>
-      <br />
-      <input
-        type="email"
-        value={user.email}
-        onChange={(e) =>
-          setUser({ ...user, email: e.target.value })
-        }
-      />
+        <label>Email:</label>
+        <br />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email"
+        />
 
-      <br />
-      <br />
+        <br />
+        <br />
 
-      <label>Phone</label>
-      <br />
-      <input
-        type="text"
-        value={user.phone}
-        onChange={(e) =>
-          setUser({ ...user, phone: e.target.value })
-        }
-      />
+        <label>Password:</label>
+        <br />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Enter your password"
+        />
 
-      <br />
-      <br />
+        <br />
+        <br />
 
-      <button>Update User</button>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 }
 
-export default App;    
+export default App;  
