@@ -405,34 +405,65 @@ import { Alert } from "bootstrap";
 // export default App;
 
 // Updating array in state:-
-import { useState } from "react";
+// import { useState } from "react";
 
+// function App() {
+//   const [fruits, setFruits] = useState([
+//     "Apple",
+//     "Banana",
+//     "Mango"
+//   ]);
+
+//   const addFruit = () => {
+//     setFruits([...fruits, "Orange"]);
+//   };
+
+//   return (
+//     <>
+//       <h1>Updating Array in State</h1>
+
+//       {fruits.map((fruit, index) => (
+//         <p key={index}>{fruit}</p>
+//       ))}
+
+//       <button onClick={addFruit}>
+//         Add Fruit
+//       </button>
+//     </>
+//   );
+// }
+
+// export default App;
+
+//useAction Hook:-
+import { useActionState } from "react";
 function App() {
-  const [fruits, setFruits] = useState([
-    "Apple",
-    "Banana",
-    "Mango"
-  ]);
-
-  const addFruit = () => {
-    setFruits([...fruits, "Orange"]);
-    setFruits([...fruits, "Grapes"]);
-    setFruits([...fruits, "Strawberry"]);
+  const submitForm = async (previousState, formData) => {
+    const name = formData.get("name");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    return `Hello ${name}!`;
   };
 
+  const [message, formAction, isPending] = useActionState(
+    submitForm,
+    ""
+  );
   return (
     <>
-      <h1>Updating Array in State</h1>
+      <h1>useActionState Hook</h1>
+      <form action={formAction}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter your name"
+        />
+        <button type="submit" disabled={isPending}>
+          {isPending ? "Submitting..." : "Submit"}
+        </button>
+      </form>
 
-      {fruits.map((fruit, index) => (
-        <p key={index}>{fruit}</p>
-      ))}
-
-      <button onClick={addFruit}>
-        Add Fruit
-      </button>
+      <h2>{message}</h2>
     </>
   );
 }
-
-export default App;  
+export default App;    
