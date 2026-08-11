@@ -575,43 +575,101 @@ import { Alert } from "bootstrap";
 // export default App;   
 
 //Layout and Index Routes:-
+// import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
+// function Layout() {
+//   return (
+//     <>
+//       <h1>My Website</h1>
+//       <nav>
+//         <Link to="/">Home</Link> |{" "}
+//         <Link to="/about">About</Link> |{" "}
+//         <Link to="/contact">Contact</Link>
+//       </nav>
+//       <hr />
+//       <Outlet />
+//     </>
+//   );
+// }
+// function Home() {
+//   return <h2>Welcome to Home Page</h2>;
+// }
+// function About() {
+//   return <h2>About Page</h2>;
+// }
+// function Contact() {
+//   return <h2>Contact Page</h2>;
+// }
+// function App() {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         {/* Layout Route */}
+//         <Route path="/" element={<Layout />}>
+//           {/* Index Route */}
+//           <Route index element={<Home />} />
+//           <Route path="about" element={<About />} />
+//           <Route path="contact" element={<Contact />} />
+//         </Route>
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// }
+// export default App;  
+
+//Route Prefixes:-
 import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
+
 function Layout() {
   return (
     <>
       <h1>My Website</h1>
+
       <nav>
         <Link to="/">Home</Link> |{" "}
-        <Link to="/about">About</Link> |{" "}
-        <Link to="/contact">Contact</Link>
+        <Link to="/products">Products</Link> |{" "}
+        <Link to="/products/electronics">Electronics</Link> |{" "}
+        <Link to="/products/clothes">Clothes</Link>
       </nav>
+
       <hr />
+
       <Outlet />
     </>
   );
 }
+
 function Home() {
-  return <h2>Welcome to Home Page</h2>;
+  return <h2>Home Page</h2>;
 }
-function About() {
-  return <h2>About Page</h2>;
+
+function Products() {
+  return <h2>Products Page</h2>;
 }
-function Contact() {
-  return <h2>Contact Page</h2>;
+
+function Electronics() {
+  return <h2>Electronics Page</h2>;
 }
+
+function Clothes() {
+  return <h2>Clothes Page</h2>;
+}
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Layout Route */}
         <Route path="/" element={<Layout />}>
-          {/* Index Route */}
           <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
+
+          <Route path="products">
+            <Route index element={<Products />} />
+            <Route path="electronics" element={<Electronics />} />
+            <Route path="clothes" element={<Clothes />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
   );
 }
-export default App;  
+
+export default App;    
