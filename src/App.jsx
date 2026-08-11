@@ -1,6 +1,6 @@
 //Styled Component
 
-import { Alert } from "bootstrap";
+//import { Alert } from "bootstrap";
 
 // import styled from "styled-components";
 
@@ -918,35 +918,111 @@ import { Alert } from "bootstrap";
 // export default App;    
 
 //React 19 use API with Example:-
-import { Suspense, use } from "react";
+// import { Suspense, use } from "react";
 
-const userPromise = fetch(
-  "https://jsonplaceholder.typicode.com/users/1"
-).then((response) => response.json());
+// const userPromise = fetch(
+//   "https://jsonplaceholder.typicode.com/users/1"
+// ).then((response) => response.json());
 
-function User() {
-  const user = use(userPromise);
+// function User() {
+//   const user = use(userPromise);
 
-  return (
-    <div>
-      <h2>User Details</h2>
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
-      <p>Phone: {user.phone}</p>
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <h2>User Details</h2>
+//       <p>Name: {user.name}</p>
+//       <p>Email: {user.email}</p>
+//       <p>Phone: {user.phone}</p>
+//     </div>
+//   );
+// }
+
+// function App() {
+//   return (
+//     <div>
+//       <h1>React 19 use() API</h1>
+
+//       <Suspense fallback={<h2>Loading User...</h2>}>
+//         <User />
+//       </Suspense>
+//     </div>
+//   );
+// }
+
+// export default App;  
+
+//Integrate API for POST Method:-
+import { useState } from "react";
 
 function App() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const userData = {
+      name: name,
+      email: email,
+    };
+
+    try {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+      );
+
+      const data = await response.json();
+
+      console.log("Response:", data);
+      alert("User Added Successfully!");
+    } catch (error) {
+      console.log("Error:", error);
+      alert("Something went wrong!");
+    }
+  };
+
   return (
     <div>
-      <h1>React 19 use() API</h1>
+      <h1>Add User</h1>
 
-      <Suspense fallback={<h2>Loading User...</h2>}>
-        <User />
-      </Suspense>
+      <form onSubmit={handleSubmit}>
+        <label>Name:</label>
+        <br />
+
+        <input
+          type="text"
+          placeholder="Enter Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+
+        <br />
+        <br />
+
+        <label>Email:</label>
+        <br />
+
+        <input
+          type="email"
+          placeholder="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <br />
+        <br />
+
+        <button type="submit">Add User</button>
+      </form>
     </div>
   );
 }
 
-export default App;  
+export default App;    
