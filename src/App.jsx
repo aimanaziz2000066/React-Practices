@@ -469,14 +469,29 @@ import { Alert } from "bootstrap";
 // export default App;    
 
 //React JS Fragment:-
-import React from "react";
+// import React from "react";
+// function App() {
+//   return (
+//     <React.Fragment>
+//       <h1>React Fragment</h1>
+//       <p>Hello React</p>
+//       <button>Click Me</button>
+//     </React.Fragment>
+//   );
+// }
+// export default App;    
+
+// Make Custom Hooks in React:-
+import useCounter from "./useCounter";
 function App() {
+  const { count, increase, decrease } = useCounter();
   return (
-    <React.Fragment>
-      <h1>React Fragment</h1>
-      <p>Hello React</p>
-      <button>Click Me</button>
-    </React.Fragment>
+    <>
+      <h1>Custom Hook Example</h1>
+      <h2>Count: {count}</h2>
+      <button onClick={increase}>Increase</button>
+      <button onClick={decrease}>Decrease</button>
+    </>
   );
 }
 export default App;    
