@@ -901,18 +901,52 @@ import { Alert } from "bootstrap";
 // export default App;  
 
 //Lazy Loading in React:-
-import { lazy, Suspense } from "react";
-const About = lazy(() => import("./About"));
+// import { lazy, Suspense } from "react";
+// const About = lazy(() => import("./About"));
+// function App() {
+//   return (
+//     <div>
+//       <h1>Lazy Loading Example</h1>
+
+//       <Suspense fallback={<h2>Loading...</h2>}>
+//         <About />
+//       </Suspense>
+//     </div>
+//   );
+// }
+
+// export default App;    
+
+//React 19 use API with Example:-
+import { Suspense, use } from "react";
+
+const userPromise = fetch(
+  "https://jsonplaceholder.typicode.com/users/1"
+).then((response) => response.json());
+
+function User() {
+  const user = use(userPromise);
+
+  return (
+    <div>
+      <h2>User Details</h2>
+      <p>Name: {user.name}</p>
+      <p>Email: {user.email}</p>
+      <p>Phone: {user.phone}</p>
+    </div>
+  );
+}
+
 function App() {
   return (
     <div>
-      <h1>Lazy Loading Example</h1>
+      <h1>React 19 use() API</h1>
 
-      <Suspense fallback={<h2>Loading...</h2>}>
-        <About />
+      <Suspense fallback={<h2>Loading User...</h2>}>
+        <User />
       </Suspense>
     </div>
   );
 }
 
-export default App;    
+export default App;  
