@@ -1079,111 +1079,115 @@
 // export default App;
 
 //Add User and User List Routes for APIs:-
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+// import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+// import { useEffect, useState } from "react";
+// function UserList() {
+//   const [users, setUsers] = useState([]);
+//   useEffect(() => {
+//     fetch("https://jsonplaceholder.typicode.com/users")
+//       .then((response) => response.json())
+//       .then((data) => setUsers(data));
+//   }, []);
+//   return (
+//     <div>
+//       <h1>User List</h1>
+//       <Link to="/add-user">Add User</Link>
+//       <ul>
+//         {users.map((user) => (
+//           <li key={user.id}>
+//             {user.name} - {user.email}
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// }
+// function AddUser() {
+//   const [name, setName] = useState("");
+//   const [email, setEmail] = useState("");
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     const userData = {
+//       name: name,
+//       email: email,
+//     };
+//     const response = await fetch(
+//       "https://jsonplaceholder.typicode.com/users",
+//       {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(userData),
+//       }
+//     );
+//     const data = await response.json();
+//     console.log(data);
+//     alert("User Added Successfully!");
+//     setName("");
+//     setEmail("");
+//   };
+//   return (
+//     <div>
+//       <h1>Add User</h1>
+//       <form onSubmit={handleSubmit}>
+//         <input
+//           type="text"
+//           placeholder="Enter Name"
+//           value={name}
+//           onChange={(e) => setName(e.target.value)}
+//         />
+//         <br />
+//         <br />
+//         <input
+//           type="email"
+//           placeholder="Enter Email"
+//           value={email}
+//           onChange={(e) => setEmail(e.target.value)}
+//         />
+//         <br />
+//         <br />
+//         <button type="submit">Add User</button>
+//       </form>
+//       <br />
+//       <Link to="/">Go to User List</Link>
+//     </div>
+//   );
+// }
+// function App() {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path="/" element={<UserList />} />
+//         <Route path="/add-user" element={<AddUser />} />
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// }
+// export default App;    
+
+//Integrate JSON Server APIs and Display Data:-
 import { useEffect, useState } from "react";
-
-function UserList() {
+function App() {
   const [users, setUsers] = useState([]);
-
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
+    fetch("http://localhost:3000/users")
       .then((response) => response.json())
-      .then((data) => setUsers(data));
+      .then((data) => setUsers(data))
+      .catch((error) => console.log(error));
   }, []);
-
   return (
     <div>
       <h1>User List</h1>
 
-      <Link to="/add-user">Add User</Link>
-
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            {user.name} - {user.email}
-          </li>
-        ))}
-      </ul>
+      {users.map((user) => (
+        <div key={user.id}>
+          <h2>{user.name}</h2>
+          <p>{user.email}</p>
+          <hr />
+        </div>
+      ))}
     </div>
   );
 }
-
-function AddUser() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const userData = {
-      name: name,
-      email: email,
-    };
-
-    const response = await fetch(
-      "https://jsonplaceholder.typicode.com/users",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      }
-    );
-
-    const data = await response.json();
-
-    console.log(data);
-    alert("User Added Successfully!");
-
-    setName("");
-    setEmail("");
-  };
-
-  return (
-    <div>
-      <h1>Add User</h1>
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        <br />
-        <br />
-
-        <input
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <br />
-        <br />
-
-        <button type="submit">Add User</button>
-      </form>
-
-      <br />
-
-      <Link to="/">Go to User List</Link>
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<UserList />} />
-        <Route path="/add-user" element={<AddUser />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
-
 export default App;    
