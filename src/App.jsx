@@ -436,34 +436,47 @@ import { Alert } from "bootstrap";
 // export default App;
 
 //useAction Hook:-
-import { useActionState } from "react";
+// import { useActionState } from "react";
+// function App() {
+//   const submitForm = async (previousState, formData) => {
+//     const name = formData.get("name");
+//     await new Promise((resolve) => setTimeout(resolve, 1000));
+//     return `Hello ${name}!`;
+//   };
+
+//   const [message, formAction, isPending] = useActionState(
+//     submitForm,
+//     ""
+//   );
+//   return (
+//     <>
+//       <h1>useActionState Hook</h1>
+//       <form action={formAction}>
+//         <input
+//           type="text"
+//           name="name"
+//           placeholder="Enter your name"
+//         />
+//         <button type="submit" disabled={isPending}>
+//           {isPending ? "Submitting..." : "Submit"}
+//         </button>
+//       </form>
+
+//       <h2>{message}</h2>
+//     </>
+//   );
+// }
+// export default App;    
+
+//React JS Fragment:-
+import React from "react";
 function App() {
-  const submitForm = async (previousState, formData) => {
-    const name = formData.get("name");
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    return `Hello ${name}!`;
-  };
-
-  const [message, formAction, isPending] = useActionState(
-    submitForm,
-    ""
-  );
   return (
-    <>
-      <h1>useActionState Hook</h1>
-      <form action={formAction}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter your name"
-        />
-        <button type="submit" disabled={isPending}>
-          {isPending ? "Submitting..." : "Submit"}
-        </button>
-      </form>
-
-      <h2>{message}</h2>
-    </>
+    <React.Fragment>
+      <h1>React Fragment</h1>
+      <p>Hello React</p>
+      <button>Click Me</button>
+    </React.Fragment>
   );
 }
 export default App;    
