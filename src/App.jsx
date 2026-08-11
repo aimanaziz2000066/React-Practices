@@ -1,5 +1,7 @@
 //Styled Component
 
+import { Alert } from "bootstrap";
+
 // import styled from "styled-components";
 
 // const Heading = styled.h1`
@@ -87,20 +89,46 @@
 // }
 // export default App;
 
-import styled from "styled-components";
-function App(){
-  const Heading =styled.h2`
-  color:red;
-  border:1px solid green;
-  border-radius:5px;
-  margin:20px;
-  padding:10px;
-  `
-  return(
+// import styled from "styled-components";
+// function App(){
+//   const Heading =styled.h2`
+//   color:red;
+//   border:1px solid green;
+//   border-radius:5px;
+//   margin:20px;
+//   padding:10px;
+//   `
+//   return(
+//     <>
+//     <h1>Styled Component With React.js</h1>
+//     <Heading>Hello</Heading>
+//     </>
+//   )
+// }
+// export default App;
+
+//Bootstrap in React js:-
+function App() {
+  return (
     <>
-    <h1>Styled Component With React.js</h1>
-    <Heading>Hello</Heading>
+      <h1>Add Bootstrap in React js</h1>
+
+      <button
+        className="btn btn-light border"
+        style={{
+          width: "auto",
+          padding: "5px 15px",
+          fontSize: "16px"
+        }}
+      >
+        Click
+      </button>
+
+      <div className="alert alert-primary mt-2" role="alert">
+        Hello, BT installed
+      </div>
     </>
-  )
+  );
 }
+
 export default App;
