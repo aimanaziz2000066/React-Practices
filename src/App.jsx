@@ -255,25 +255,53 @@ import { Alert } from "bootstrap";
 // export default App;
 
 // useTransition Hook in React js:-    
-import { useState, useTransition } from "react";
+// import { useState, useTransition } from "react";
 
+// function App() {
+//   const [count, setCount] = useState(0);
+//   const [isPending, startTransition] = useTransition();
+//   const handleClick = () => {
+//     startTransition(() => {
+//       setCount(count + 1);
+//     });
+//   };
+//   return (
+//     <>
+//       <h1>useTransition Hook</h1>
+//       <h2>Count: {count}</h2>
+//       <button onClick={handleClick}>
+//         Increase
+//       </button>
+//       {isPending && <p>Updating...</p>}
+//     </>
+//   );
+// }
+// export default App;
+
+//React js Pure Component:-
+import React from "react";
+class Student extends React.PureComponent {
+  render() {
+    console.log("Student Component Render");
+    return (
+      <>
+        <h2>Student Name: {this.props.name}</h2>
+        <h2>Age:{this.props.age}</h2>
+      </>
+    );
+  }
+}
 function App() {
-  const [count, setCount] = useState(0);
-  const [isPending, startTransition] = useTransition();
-  const handleClick = () => {
-    startTransition(() => {
-      setCount(count + 1);
-    });
-  };
+  const name = "Aiman";
+  const age = 20;
+  
   return (
     <>
-      <h1>useTransition Hook</h1>
-      <h2>Count: {count}</h2>
-      <button onClick={handleClick}>
-        Increase
-      </button>
-      {isPending && <p>Updating...</p>}
+      <h1>Pure Component Example</h1>
+
+      <Student name={name} />
+      <Student age={age} />
     </>
   );
 }
-export default App;
+export default App;   
