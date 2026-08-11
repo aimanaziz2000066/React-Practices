@@ -527,49 +527,91 @@ import { Alert } from "bootstrap";
 // export default App;    
 
 //Nested Navigation with React Router:-
+// import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
+// function Home() {
+//   return <h2>Home Page</h2>;
+// }
+// function About() {
+//   return <h2>About Page</h2>;
+// }
+
+// function Dashboard() {
+//   return (
+//     <div>
+//       <h2>Dashboard</h2>
+//       <nav>
+//         <Link to="profile">Profile</Link> |{" "}
+//         <Link to="settings">Settings</Link>
+//       </nav>
+//       <Outlet />
+//     </div>
+//   );
+// }
+// function Profile() {
+//   return <h3>Profile Page</h3>;
+// }
+// function Settings() {
+//   return <h3>Settings Page</h3>;
+// }
+// function App() {
+//   return (
+//     <BrowserRouter>
+//       <nav>
+//         <Link to="/">Home</Link> |{" "}
+//         <Link to="/about">About</Link> |{" "}
+//         <Link to="/dashboard">Dashboard</Link>
+//       </nav>
+//       <Routes>
+//         <Route path="/" element={<Home />} />
+//         <Route path="/about" element={<About />} />
+//         <Route path="/dashboard" element={<Dashboard />}>
+//           <Route path="profile" element={<Profile />} />
+//           <Route path="settings" element={<Settings />} />
+//         </Route>
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// }
+// export default App;   
+
+//Layout and Index Routes:-
 import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
+function Layout() {
+  return (
+    <>
+      <h1>My Website</h1>
+      <nav>
+        <Link to="/">Home</Link> |{" "}
+        <Link to="/about">About</Link> |{" "}
+        <Link to="/contact">Contact</Link>
+      </nav>
+      <hr />
+      <Outlet />
+    </>
+  );
+}
 function Home() {
-  return <h2>Home Page</h2>;
+  return <h2>Welcome to Home Page</h2>;
 }
 function About() {
   return <h2>About Page</h2>;
 }
-
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
-      <nav>
-        <Link to="profile">Profile</Link> |{" "}
-        <Link to="settings">Settings</Link>
-      </nav>
-      <Outlet />
-    </div>
-  );
-}
-function Profile() {
-  return <h3>Profile Page</h3>;
-}
-function Settings() {
-  return <h3>Settings Page</h3>;
+function Contact() {
+  return <h2>Contact Page</h2>;
 }
 function App() {
   return (
     <BrowserRouter>
-      <nav>
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/about">About</Link> |{" "}
-        <Link to="/dashboard">Dashboard</Link>
-      </nav>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="profile" element={<Profile />} />
-          <Route path="settings" element={<Settings />} />
+        {/* Layout Route */}
+        <Route path="/" element={<Layout />}>
+          {/* Index Route */}
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
         </Route>
       </Routes>
     </BrowserRouter>
   );
 }
-export default App;   
+export default App;  
