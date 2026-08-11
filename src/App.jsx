@@ -617,56 +617,137 @@ import { Alert } from "bootstrap";
 // export default App;  
 
 //Route Prefixes:-
-import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
+// import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
 
-function Layout() {
+// function Layout() {
+//   return (
+//     <>
+//       <h1>My Website</h1>
+
+//       <nav>
+//         <Link to="/">Home</Link> |{" "}
+//         <Link to="/products">Products</Link> |{" "}
+//         <Link to="/products/electronics">Electronics</Link> |{" "}
+//         <Link to="/products/clothes">Clothes</Link>
+//       </nav>
+
+//       <hr />
+
+//       <Outlet />
+//     </>
+//   );
+// }
+
+// function Home() {
+//   return <h2>Home Page</h2>;
+// }
+
+// function Products() {
+//   return <h2>Products Page</h2>;
+// }
+
+// function Electronics() {
+//   return <h2>Electronics Page</h2>;
+// }
+
+// function Clothes() {
+//   return <h2>Clothes Page</h2>;
+// }
+
+// function App() {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path="/" element={<Layout />}>
+//           <Route index element={<Home />} />
+
+//           <Route path="products">
+//             <Route index element={<Products />} />
+//             <Route path="electronics" element={<Electronics />} />
+//             <Route path="clothes" element={<Clothes />} />
+//           </Route>
+//         </Route>
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// }
+
+// export default App;    
+
+// Edit User Detail Page:-
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useParams,
+  useNavigate,
+} from "react-router-dom";
+
+function Home() {
   return (
-    <>
-      <h1>My Website</h1>
+    <div>
+      <h1>Users List</h1>
 
-      <nav>
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/products">Products</Link> |{" "}
-        <Link to="/products/electronics">Electronics</Link> |{" "}
-        <Link to="/products/clothes">Clothes</Link>
-      </nav>
+      <Link to="/user/1">User 1</Link>
+      <br />
 
-      <hr />
-
-      <Outlet />
-    </>
+      <Link to="/user/2">User 2</Link>
+    </div>
   );
 }
 
-function Home() {
-  return <h2>Home Page</h2>;
+function UserDetail() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  return (
+    <div>
+      <h1>User Detail Page</h1>
+
+      <h2>User ID: {id}</h2>
+
+      <p>Name: Aiman</p>
+      <p>Email: aiman@gmail.com</p>
+
+      <button onClick={() => navigate(`/user/${id}/edit`)}>
+        Edit User
+      </button>
+    </div>
+  );
 }
 
-function Products() {
-  return <h2>Products Page</h2>;
-}
+function EditUser() {
+  const { id } = useParams();
 
-function Electronics() {
-  return <h2>Electronics Page</h2>;
-}
+  return (
+    <div>
+      <h1>Edit User</h1>
 
-function Clothes() {
-  return <h2>Clothes Page</h2>;
+      <h2>User ID: {id}</h2>
+
+      <input type="text" placeholder="Enter Name" />
+      <br />
+      <br />
+
+      <input type="email" placeholder="Enter Email" />
+      <br />
+      <br />
+
+      <button>Update User</button>
+    </div>
+  );
 }
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+        <Route path="/" element={<Home />} />
 
-          <Route path="products">
-            <Route index element={<Products />} />
-            <Route path="electronics" element={<Electronics />} />
-            <Route path="clothes" element={<Clothes />} />
-          </Route>
-        </Route>
+        <Route path="/user/:id" element={<UserDetail />} />
+
+        <Route path="/user/:id/edit" element={<EditUser />} />
       </Routes>
     </BrowserRouter>
   );
