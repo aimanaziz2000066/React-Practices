@@ -157,25 +157,48 @@ import { Alert } from "bootstrap";
 // }
 // export default App;
 //Another Example:-
+// import { useRef } from "react";
+// function App() {
+//   const count = useRef(0);
+
+//   const increase = () => {
+//     count.current = count.current + 1;
+//     console.log(count.current);
+//   };
+//   return (
+//     <>
+//       <h1>useRef Example</h1>
+
+//       <button onClick={increase}>
+//         Increase
+//       </button>
+//     </>
+//   );
+// }
+// export default App;
+
+//React Uncontrolled Component:-
 import { useRef } from "react";
-
 function App() {
-  const count = useRef(0);
-
-  const increase = () => {
-    count.current = count.current + 1;
-    console.log(count.current);
+  const inputRef = useRef();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(inputRef.current.value);
   };
-
   return (
     <>
-      <h1>useRef Example</h1>
-
-      <button onClick={increase}>
-        Increase
-      </button>
+      <h1>Uncontrolled Component</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          ref={inputRef}
+          placeholder="Enter your name"
+        />
+        <button type="submit">
+          Submit
+        </button>
+      </form>
     </>
   );
 }
-
-export default App;
+export default App;   
