@@ -108,25 +108,72 @@ import { Alert } from "bootstrap";
 // export default App;
 
 //Bootstrap in React js:-
+// function App() {
+//   return (
+//     <>
+//       <h1>Add Bootstrap in React js</h1>
+//       <button
+//         className="btn btn-light border"
+//         style={{
+//           width: "auto",
+//           padding: "5px 15px",
+//           fontSize: "16px"
+//         }}
+//       >
+//         Click
+//       </button>
+//       <div className="alert alert-primary mt-2" role="alert">
+//         Hello, BT installed
+//       </div>
+//     </>
+//   );
+// }
+// export default App;
+
+//useRef Hook in React:-
+// import { useRef } from "react";
+
+// function App() {
+//   const inputRef = useRef();
+
+//   const handleFocus = () => {
+//     inputRef.current.focus();
+//   };
+
+//   return (
+//     <>
+//       <h1>useRef Hook in React</h1>
+
+//       <input
+//         ref={inputRef}
+//         type="text"
+//         placeholder="Enter your name"
+//       />
+//       <button onClick={handleFocus}>
+//         Focus Input
+//       </button>
+//     </>
+//   );
+// }
+// export default App;
+//Another Example:-
+import { useRef } from "react";
+
 function App() {
+  const count = useRef(0);
+
+  const increase = () => {
+    count.current = count.current + 1;
+    console.log(count.current);
+  };
+
   return (
     <>
-      <h1>Add Bootstrap in React js</h1>
+      <h1>useRef Example</h1>
 
-      <button
-        className="btn btn-light border"
-        style={{
-          width: "auto",
-          padding: "5px 15px",
-          fontSize: "16px"
-        }}
-      >
-        Click
+      <button onClick={increase}>
+        Increase
       </button>
-
-      <div className="alert alert-primary mt-2" role="alert">
-        Hello, BT installed
-      </div>
     </>
   );
 }
