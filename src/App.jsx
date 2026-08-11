@@ -204,17 +204,52 @@ import { Alert } from "bootstrap";
 // export default App;   
 
 //Pass function as Props:-
-import Student from "./Student";
+// import Student from "./Student";
+// function App() {
+//   const showMessage = () => {
+//     alert("Hello from App Component!");
+//   };
+//   return (
+//     <>
+//       <h1>Pass Function as Props</h1>
+
+//       <Student message={showMessage} />
+//     </>
+//   );
+// }
+// export default App;  
+
+//useFormStatus Hook:-   
+import { useFormStatus } from "react-dom";
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button type="submit" disabled={pending}>
+      {pending ? "Submitting..." : "Submit"}
+    </button>
+  );
+}
+
 function App() {
-  const showMessage = () => {
-    alert("Hello from App Component!");
+  const handleSubmit = async (formData) => {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    console.log(formData.get("name"));
   };
   return (
     <>
-      <h1>Pass Function as Props</h1>
+      <h1>useFormStatus Hook</h1>
+      <form action={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter your name"
+        />
 
-      <Student message={showMessage} />
+        <SubmitButton />
+      </form>
     </>
   );
 }
-export default App;  
+export default App;
